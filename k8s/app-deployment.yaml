@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: fitness-challenge
+  name: persistence-fitness-challenge
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  selector:
+    matchLabels:
+      app: persistence-fitness-challenge
+  template:
+    metadata:
+      labels:
+        app: persistence-fitness-challenge
+    spec:
+      containers:
+        - name: persistence-fitness-challenge
+          image: costantino96/fitness-challenge-persistence:1.0.0-SNAPSHOT
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: persistence-fitness-challenge-config
+            - secretRef:
+                name: persistence-secret
+          volumeMounts:
+            - mountPath: /etc/config
+              name: config
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1025Mi
+            requests:
+              cpu: 250m
+              memory: 512Mi
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 90
+            periodSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /api/actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 90
+            periodSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+            timeoutSeconds: 1
+      volumes:
+        - name: config
+          configMap:
+            name: persistence-fitness-challenge-config
