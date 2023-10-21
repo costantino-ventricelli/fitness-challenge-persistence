@@ -7,12 +7,18 @@ server:
 # DATABASE
 spring.jpa:
   database: MYSQL
-  hibernate.ddl-auto: create
+  hibernate.ddl-auto: create-only
   show-sql: true
   properties:
     hibernate:
       globally_quoted_identifiers: true
       globally_quoted_identifiers_skip_column_definitions: true
+
+# Specify the path of the OpenAPI documentation
+spring-doc:
+  api-docs.path: /open-api/api-docs
+  swagger-ui.path: /open-api/swagger-ui.html
+  swagger-ui.enabled: true
 
 spring.datasource:
   driverClassName: com.mysql.cj.jdbc.Driver

@@ -9,3 +9,9 @@ data:
   spring.datasource.driverClassName: com.mysql.cj.jdbc.Driver
   MYSQL_USER: fitness-challenge
   MYSQL_DATABASE: fitness_challenge
+
+  # Specify the path of the OpenAPI documentation
+  spring-doc:
+    api-docs.path: /open-api/api-docs
+    swagger-ui.path: /open-api/swagger-ui.html
+    swagger-ui.enabled: true
