@@ -1,5 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val springBootVersion = "3.1.4"
+val mapStructVersion = "1.5.3.Final"
+val jsonWebToken = "0.11.5"
+
 plugins {
 	id("org.springframework.boot") version "3.1.5"
 	id("io.spring.dependency-management") version "1.1.3"
@@ -28,16 +32,14 @@ repositories {
 }
 
 kapt {
-	arguments {
-		arg("mapstruct.unmappedTargetPolicy", "ignore")
-	}
 	keepJavacAnnotationProcessors = true
+	correctErrorTypes = true
 }
 
 
 dependencies {
 	// actuator
-	implementation("org.springframework.boot:spring-boot-starter-actuator:3.1.0")
+	implementation("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
 	// persistence
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.0.4")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2")
@@ -46,17 +48,17 @@ dependencies {
 	// open-api / swagger
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 	// spring boot
-	implementation("org.springframework.boot:spring-boot-starter-web:3.1.0")
-	implementation("org.springframework.session:spring-session-core:3.0.0")
+	implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+	implementation("org.springframework.session:spring-session-core:3.1.3")
+	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
+	developmentOnly("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
+	testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+	//mapstruct
+	kapt("org.mapstruct:mapstruct:${mapStructVersion}")
+	implementation("org.mapstruct:mapstruct:${mapStructVersion}")
+	annotationProcessor("org.mapstruct:mapstruct-processor:${mapStructVersion}")
 	// tools
-	api("com.github.pozo:mapstruct-kotlin:1.4.0.0")
-	kapt("com.github.pozo:mapstruct-kotlin:1.4.0.0")
-	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:3.0.4")
 	implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.10")
-	implementation("org.mapstruct:mapstruct:1.5.3.Final")
-	developmentOnly("org.springframework.boot:spring-boot-devtools:3.0.4")
-	testImplementation("org.springframework.boot:spring-boot-starter-test:3.1.0")
-	testImplementation("org.springframework.security:spring-security-test:6.0.2")
 }
 
 tasks.withType<KotlinCompile> {

@@ -1,46 +1,25 @@
-package it.fitness.challenge.persitence.entity
+package it.fitness.challenge.persitence.service.user.dto
 
 import it.fitness.challenge.persitence.commons.RuoloEnum
-import jakarta.persistence.*
 import java.math.BigInteger
 import java.util.*
 
-@Entity
-@Table(name = "utente")
-class UserEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", columnDefinition = "BIGINT")
+class UserPersistenceDto {
+    
     private lateinit var id: BigInteger
-
-    @Column(name = "username", nullable = false, unique = true)
     private lateinit var username: String
-
-    @Column(name = "email", nullable = false)
     private lateinit var email: String
-
-    @Column(columnDefinition = "ENUM('ADMIN', 'USER', 'TRAINER')")
-    @Enumerated(EnumType.STRING)
     private lateinit var ruolo: RuoloEnum
-
-    @Column(name = "name", nullable = false)
     private lateinit var nome: String
-
-    @Column(name = "cognome", nullable = false)
     private lateinit var cognome: String
-
-    @Column(name = "password", nullable = false)
     private lateinit var password: String
-
-    @Column(name = "data_iscrizione", nullable = false)
     private lateinit var dataIscrizione: Date
 
     fun getId(): BigInteger {
         return this.id
     }
 
-    fun setId(id: BigInteger): UserEntity {
+    fun setId(id: BigInteger): UserPersistenceDto {
         this.id = id
         return this;
 
@@ -50,7 +29,7 @@ class UserEntity {
         return this.username
     }
 
-    fun setUsername(username: String): UserEntity {
+    fun setUsername(username: String): UserPersistenceDto {
         this.username = username
         return this;
     }
@@ -59,7 +38,7 @@ class UserEntity {
         return this.email
     }
 
-    fun setEmail(email: String): UserEntity {
+    fun setEmail(email: String): UserPersistenceDto {
         this.email = email
         return this;
     }
@@ -68,7 +47,7 @@ class UserEntity {
         return this.ruolo
     }
 
-    fun setRuolo(ruolo: RuoloEnum): UserEntity {
+    fun setRuolo(ruolo: RuoloEnum): UserPersistenceDto {
         this.ruolo = ruolo
         return this;
     }
@@ -77,7 +56,7 @@ class UserEntity {
         return this.nome
     }
 
-    fun setNome(nome: String): UserEntity {
+    fun setNome(nome: String): UserPersistenceDto {
         this.nome = nome
         return this;
     }
@@ -86,7 +65,7 @@ class UserEntity {
         return this.cognome
     }
 
-    fun setCognome(cognome: String): UserEntity {
+    fun setCognome(cognome: String): UserPersistenceDto {
         this.cognome = cognome
         return this;
     }
@@ -95,7 +74,7 @@ class UserEntity {
         return this.password
     }
 
-    fun setPassword(password: String): UserEntity {
+    fun setPassword(password: String): UserPersistenceDto {
         this.password = password
         return this;
     }
@@ -104,9 +83,8 @@ class UserEntity {
         return this.dataIscrizione
     }
 
-    fun setDataIscrizione(dataIscrizione: Date): UserEntity {
+    fun setDataIscrizione(dataIscrizione: Date): UserPersistenceDto {
         this.dataIscrizione = dataIscrizione
         return this
     }
-
 }

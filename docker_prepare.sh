@@ -3,12 +3,12 @@ docker build --tag fitness-challenge-persistence -f Dockerfile .
 echo 'Custom image created'
 
 echo 'Tagging custom image'
-docker tag fitness-challenge-persistence:latest costantino96/fitness-challenge-persistence:1.0.0-SNAPSHOT
+docker tag fitness-challenge-persistence:latest costantino96/fitness-challenge-persistence:1.0.2-SNAPSHOT
 echo 'Tagging done'
 
 echo 'Push image to registry'
 docker login --username costantino96 --password dckr_pat_m2gAVNu_QY7tOQATHpZxDgXkD6I
-docker push costantino96/fitness-challenge-persistence:1.0.0-SNAPSHOT
+docker push costantino96/fitness-challenge-persistence:1.0.2-SNAPSHOT
 echo 'Push DONE'
 
 echo 'Apply the new image to kubernetes'

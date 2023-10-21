@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: persistence-fitness-challenge
-          image: costantino96/fitness-challenge-persistence:1.0.0-SNAPSHOT
+          image: costantino96/fitness-challenge-persistence:1.0.2-SNAPSHOT
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

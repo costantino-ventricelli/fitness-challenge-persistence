@@ -1,4 +1,4 @@
-package it.fitness.challenge.persistence.repository
+package it.fitness.challenge.persitence.repository
 
 import it.fitness.challenge.persitence.entity.UserEntity
 import org.springframework.data.jpa.repository.JpaRepository

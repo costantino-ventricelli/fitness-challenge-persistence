@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: fitness-challenge
+  annotations:
+    konghq.com/plugins: "http-log-plugin,correlation-id-plugin"
+  name: persistence-fitness-challenge-ingress
+
+spec:
+  ingressClassName: kong
+  rules:
+    - http:
+        paths:
+          - path: /persistence/open-api #persistence open-api
+            pathType: Prefix
+            backend:
+              service:
+                name: persistence-app-svc
+                port:
+                  number: 8080
