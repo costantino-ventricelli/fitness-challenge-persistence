@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+    <property name="LOG_PATTERN" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+    <property name="HOME_LOG" value="/logs/fitness-challenge.persistence.log"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <file>${HOME_LOG}</file>
+        <rollinPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fineNamePattern>/logs/persistence/persistence.%d{yyyy-MM-dd}.%i.log</fineNamePattern>
+            <maxHistory>60</maxHistory>
+        </rollinPolicy>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="it.fitness.challenge.persitence.repository" level="TRACE"/>
+    <logger name="it.fitness.challenge.persitence.service" level="TRACE"/>
+
+    <root level="ERROR">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ROLLING_FILE"/>
+    </root>
+
+</configuration>

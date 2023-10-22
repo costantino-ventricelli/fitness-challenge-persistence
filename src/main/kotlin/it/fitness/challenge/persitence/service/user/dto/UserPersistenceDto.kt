@@ -2,6 +2,7 @@ package it.fitness.challenge.persitence.service.user.dto
 
 import it.fitness.challenge.persitence.commons.RuoloEnum
 import java.math.BigInteger
+import java.time.OffsetDateTime
 import java.util.*
 
 class UserPersistenceDto {
@@ -13,7 +14,7 @@ class UserPersistenceDto {
     private lateinit var nome: String
     private lateinit var cognome: String
     private lateinit var password: String
-    private lateinit var dataIscrizione: Date
+    private lateinit var dataIscrizione: OffsetDateTime
 
     fun getId(): BigInteger {
         return this.id
@@ -79,11 +80,11 @@ class UserPersistenceDto {
         return this;
     }
 
-    fun getDataIscrizione(): Date {
+    fun getDataIscrizione(): OffsetDateTime {
         return this.dataIscrizione
     }
 
-    fun setDataIscrizione(dataIscrizione: Date): UserPersistenceDto {
+    fun setDataIscrizione(dataIscrizione: OffsetDateTime): UserPersistenceDto {
         this.dataIscrizione = dataIscrizione
         return this
     }

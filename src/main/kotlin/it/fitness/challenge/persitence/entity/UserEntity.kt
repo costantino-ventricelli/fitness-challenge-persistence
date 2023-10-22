@@ -3,6 +3,7 @@ package it.fitness.challenge.persitence.entity
 import it.fitness.challenge.persitence.commons.RuoloEnum
 import jakarta.persistence.*
 import java.math.BigInteger
+import java.time.OffsetDateTime
 import java.util.*
 
 @Entity
@@ -33,8 +34,8 @@ class UserEntity {
     @Column(name = "password", nullable = false)
     private lateinit var password: String
 
-    @Column(name = "data_iscrizione", nullable = false)
-    private lateinit var dataIscrizione: Date
+    @Column(name = "data_iscrizione", nullable = false, columnDefinition = "DATETIME")
+    private lateinit var dataIscrizione: OffsetDateTime
 
     fun getId(): BigInteger {
         return this.id
@@ -100,11 +101,11 @@ class UserEntity {
         return this;
     }
 
-    fun getDataIscrizione(): Date {
+    fun getDataIscrizione(): OffsetDateTime {
         return this.dataIscrizione
     }
 
-    fun setDataIscrizione(dataIscrizione: Date): UserEntity {
+    fun setDataIscrizione(dataIscrizione: OffsetDateTime): UserEntity {
         this.dataIscrizione = dataIscrizione
         return this
     }
