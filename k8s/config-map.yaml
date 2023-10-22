@@ -11,7 +11,6 @@ data:
   MYSQL_DATABASE: fitness_challenge
 
   # Specify the path of the OpenAPI documentation
-  spring-doc:
-    api-docs.path: /open-api/api-docs
-    swagger-ui.path: /open-api/swagger-ui.html
-    swagger-ui.enabled: true
+  spring-doc.api-docs.path: /open-api/api-docs
+  spring-doc.swagger-ui.path: /open-api/swagger-ui.html
+  spring-doc.swagger-ui.enabled: "true"
